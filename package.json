@@ -1,0 +1,13 @@
+{
+  "name": "cron-twit",
+  "version": "1.0.0",
+  "description": "Cron for twitter",
+  "author": "comegaillard",
+  "license": "ISC",
+  "devDependencies": {
+    "mongodb": "^3.0.3",
+    "node-cron": "^1.2.1",
+    "twitter": "^1.7.1"
+  },
+  "dependencies": {}
+}
