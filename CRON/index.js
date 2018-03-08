@@ -1,5 +1,5 @@
 var Cron = require('node-cron');
-var cronTask = Cron.schedule('30 * * * * *', function(){
+var cronTask = Cron.schedule('*/5 * * * *', function(){
 	// EVERY 15 MINS == */15 * * * *
 	// console.log("--- CRON ---", new Date());
 	getTrends();
