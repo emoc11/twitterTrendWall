@@ -31,13 +31,11 @@ const dbUrl = 'mongodb://localhost:27017';
 const dbName = 'trendswall';
 
 function doMongo(func) {
-	console.log("--- DO MONGO ---");
+	// console.log("--- DO MONGO ---");
 	// Connect MongoDB
 	MongoClient.connect(dbUrl, function(err, client) {
-		if(err) {
-			console.log("ERROR Mongo CONNECTION", err);
-		}
-		console.log("connected MongoDB OK");
+		Assert.equal(null, err);
+		// console.log("connected MongoDB OK");
 		const db = client.db(dbName);
 
 		func(db,function() {
@@ -100,7 +98,7 @@ function doTrends(trends) {
 	});
 
 	trends.map(function(obj, index) {
-		console.log(obj.name);
+		// console.log(obj.name);
 
 		// FIND trend in DB
 		var foundTrend = {};
