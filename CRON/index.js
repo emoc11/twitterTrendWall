@@ -1,12 +1,12 @@
-const Cron = require('node-cron');
+var Cron = require('node-cron');
 var cronTask = Cron.schedule('*/5 * * * *', function(){
 	// EVERY 15 MINS == */15 * * * *
 	// console.log("--- CRON ---", new Date());
 	getTrends();
 });
 
-const Twitter = require('twitter');
-const Api = new Twitter({
+var Twitter = require('twitter');
+var Api = new Twitter({
   consumer_key: 'oDLjhgjzTY9U3kIQChA8MCH5P',
   consumer_secret: 'bKaLJJGjKhIKDfnozp1KZgFL9PtV0Kt9RB8LHiF95uItZpekbd',
   access_token_key: '326410325-mXzAnEgQ4rDBLpwfhHAYy1qdwsJ0YQhcBX8Zj4Q1',
@@ -25,10 +25,10 @@ function getTrends() {
 	});
 }
 
-const MongoClient = require('mongodb').MongoClient;
-const Assert = require('assert');
-const dbUrl = 'mongodb://localhost:27017';
-const dbName = 'trendswall';
+var MongoClient = require('mongodb').MongoClient;
+var Assert = require('assert');
+var dbUrl = 'mongodb://localhost:27017';
+var dbName = 'trendswall';
 
 function doMongo(func) {
 	// console.log("--- DO MONGO ---");
@@ -36,7 +36,7 @@ function doMongo(func) {
 	MongoClient.connect(dbUrl, function(err, client) {
 		Assert.equal(null, err);
 		// console.log("connected MongoDB OK");
-		const db = client.db(dbName);
+		var db = client.db(dbName);
 
 		func(db,function() {
 			client.close();
@@ -49,26 +49,26 @@ function doTrends(trends) {
 
 	// Mongo search for actif TRUE -> go false if not in trend
 	doMongo(function(db,cb) {
-		const collection = db.collection('trends');
+		var collection = db.collection('trends');
 
-		let allActif = collection.find({actif: true}).toArray(function(err, res) {
+		var allActif = collection.find({actif: true}).toArray(function(err, res) {
 			if(err) {
 				console.log("ERROR mongo FIND ACTIF", err);
 			}
 
 			for (var i = 0; i < res.length; i++) {
-				let trend = res[i];
+				var trend = res[i];
 
 				// If dont find trend in current trending in twitter
 				if(trends.find(o => o.name === trend.name) === undefined) {
-					let name = trend.name
-					let firstDate = trend.firstDate;
-					let lastDate = trend.lastDate;
-					let actif = false;
-					let lastTimeActif = Date.now() - trend.lastDate.getTime();
-					let tempsActif = trend.tempsActif + lastTimeActif;
-					let nbActif = trend.nbActif;
-					let maxActif = trend.maxActif >= lastTimeActif ? trend.maxActif : lastTimeActif;
+					var name = trend.name
+					var firstDate = trend.firstDate;
+					var lastDate = trend.lastDate;
+					var actif = false;
+					var lastTimeActif = Date.now() - trend.lastDate.getTime();
+					var tempsActif = trend.tempsActif + lastTimeActif;
+					var nbActif = trend.nbActif;
+					var maxActif = trend.maxActif >= lastTimeActif ? trend.maxActif : lastTimeActif;
 
 					collection.updateOne(
 						{name: name},
@@ -103,7 +103,7 @@ function doTrends(trends) {
 		// FIND trend in DB
 		var foundTrend = {};
 		doMongo(function(db,cb) {
-			const collection = db.collection('trends');
+			var collection = db.collection('trends');
 
 			collection.findOne({name: obj.name}, function(err, res) {
 				if(err) {
@@ -117,17 +117,17 @@ function doTrends(trends) {
 
 		// UPDATE trend in DB
 		doMongo(function(db,cb) {
-			const collection = db.collection('trends');
+			var collection = db.collection('trends');
 
-			let name = obj.name
-			let firstDate = new Date();
-			let lastDate = new Date();
-			let actif = true;
-			let tempsActif = 0;
-			let nbActif = 1;
-			let maxActif = 0;
+			var name = obj.name
+			var firstDate = new Date();
+			var lastDate = new Date();
+			var actif = true;
+			var tempsActif = 0;
+			var nbActif = 1;
+			var maxActif = 0;
 
-			if(foundTrend != undefined && foundTrend.constructor === Object && Object.keys(foundTrend).length !== 0) {
+			if(foundTrend != undefined && foundTrend.varructor === Object && Object.keys(foundTrend).length !== 0) {
 				firstDate = foundTrend.firstDate;
 				tempsActif = foundTrend.tempsActif;
 				nbActif = foundTrend.actif ? foundTrend.nbActif : foundTrend.nbActif + 1;
