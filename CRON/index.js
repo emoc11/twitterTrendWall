@@ -1,5 +1,5 @@
 var Cron = require('node-cron');
-var cronTask = Cron.schedule('*/5 * * * *', function(){
+var cronTask = Cron.schedule('30 * * * * *', function(){
 	// EVERY 15 MINS == */15 * * * *
 	// console.log("--- CRON ---", new Date());
 	getTrends();
@@ -27,7 +27,7 @@ function getTrends() {
 
 var MongoClient = require('mongodb').MongoClient;
 var Assert = require('assert');
-var dbUrl = 'mongodb://localhost:27017';
+var dbUrl = 'mongodb://emoc11:pioupiou11@ds261138.mlab.com:61138';
 var dbName = 'trendswall';
 
 function doMongo(func) {
