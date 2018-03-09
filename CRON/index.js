@@ -27,7 +27,7 @@ function getTrends() {
 
 var MongoClient = require('mongodb').MongoClient;
 var Assert = require('assert');
-var dbUrl = 'mongodb://emoc11:pioupiou11@ds261138.mlab.com:61138';
+var dbUrl = 'mongodb://emoc11:pioupiou11@ds261138.mlab.com:61138/trendswall';
 var dbName = 'trendswall';
 
 function doMongo(func) {
