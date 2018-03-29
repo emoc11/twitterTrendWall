@@ -1,0 +1,11 @@
+{
+  "name": "cron-twit-front",
+  "version": "1.0.0",
+  "description": "twitter front for Cron twitter trends",
+  "author": "comegaillard",
+  "license": "ISC",
+  "devDependencies": {
+    "mongodb": "^3.0.3"
+  },
+  "dependencies": {}
+}
