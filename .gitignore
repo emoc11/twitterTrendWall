@@ -1,2 +1,4 @@
 CRON/node_modules
 front/node_modules
+
+front/public/css/style.css
