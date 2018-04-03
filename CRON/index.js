@@ -127,7 +127,7 @@ function doTrends(trends) {
 			var nbActif = 1;
 			var maxActif = 0;
 
-			if(foundTrend != undefined && foundTrend.varructor === Object && Object.keys(foundTrend).length !== 0) {
+			if(foundTrend != undefined && foundTrend.constructor === Object && Object.keys(foundTrend).length !== 0) {
 				firstDate = foundTrend.firstDate;
 				tempsActif = foundTrend.tempsActif;
 				nbActif = foundTrend.actif ? foundTrend.nbActif : foundTrend.nbActif + 1;

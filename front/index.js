@@ -35,7 +35,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // --------- ROUTES ---------
 // --------------------------
 app.get('/', function(req, res, next) {
-	console.log("ROUTER GET / in routes.js");
 	getAllTrends(function(allTrends) {
 		res.render('index', {tab_title: 'Twitter Topics Wall', title: 'Index TITLE', trends: allTrends});
 	});
